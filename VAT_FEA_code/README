@@ -9,3 +9,8 @@ Code applies for examples in Table 7
 % 2) To use different parameterization methods for VAT fiber plies;
 
 
+% ==================================================
+0. "Thermal_buckling_plate_validation_Duran.m" is the main code working for case (c) in Table 7 in the attached paper;
+1. Plate geometry can be modified in lines 60-62;
+2. Material properties can be modified in lines 132-141;
+3. Fiber ply orientations can be modified in line 144;
