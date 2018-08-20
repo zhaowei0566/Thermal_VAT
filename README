@@ -1,0 +1,16 @@
+Variable-angle-tow (VAT) laminated plate means the fiber path is no longer straight for each layer in composite structure.
+
+The code works for thermal buckling analysis of VAT laminated plate subjected to a uniform temperature change.
+Code applies for examples in Table 7
+
+
+%% # TO DO LISTS
+% 1) TO add static/mechanical buckling/vibration/forced vibration/prestressed vibration analysis solvers for PLATE;
+% 2) To use different parameterization methods for VAT fiber plies;
+
+
+% ==================================================
+0. "Thermal_buckling_plate_validation_Duran.m" is the main code working for case (c) in Table 7 in the attached paper;
+1. Plate geometry can be modified in lines 60-62;
+2. Material properties can be modified in lines 132-141;
+3. Fiber ply orientations can be modified in line 144;
