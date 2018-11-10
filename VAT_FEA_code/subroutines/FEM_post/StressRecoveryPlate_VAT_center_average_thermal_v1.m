@@ -110,7 +110,7 @@ for layer=1:size(T0T1,1)
 
             
             %% in-plane stress
-            strain0(:,gauss_point_num)=  - ThermalExpCoeff * delta_Temp;
+            strain0(:,gauss_point_num)=  ThermalExpCoeff * delta_Temp;
             
             stress0(:,gauss_point_num)=Qbar_K([1 2 5],[1 2 5])*strain0(:,gauss_point_num);
             

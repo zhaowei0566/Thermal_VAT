@@ -30,7 +30,48 @@ figure(200);hold on; plot(xx(SideNodesNumList_BHS ),yy(SideNodesNumList_BHS ),'M
     'Color',[0 0 1]);
 
 switch type
-    
+    case 'SSSS-NXX-Thermal'
+        
+        % Unaxial stress - Nxx
+        % left side, u=v=w=0
+        SideNodesNum_LHS=length(SideNodesNumList_LHS);
+        SideNodesNum=SideNodesNum_LHS;
+        SideNodesNumList=SideNodesNumList_LHS;
+        SidesDof_LHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        SidesDof_LHS(1*SideNodesNum+1:SideNodesNum*2)=SideNodesNumList+3*nodeNum; %% u is constrainted
+        SidesDof_LHS(2*SideNodesNum+1:SideNodesNum*3)=SideNodesNumList+4*nodeNum; %% v is constrainted
+        
+        % right side,u=v=w=0
+        SideNodesNum_RHS=length(SideNodesNumList_RHS);
+        SideNodesNum=SideNodesNum_RHS;
+        SideNodesNumList=SideNodesNumList_RHS;
+        SidesDof_RHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        SidesDof_RHS(1*SideNodesNum+1:SideNodesNum*2)=SideNodesNumList+3*nodeNum; %% u is constrainted
+        SidesDof_RHS(2*SideNodesNum+1:SideNodesNum*3)=SideNodesNumList+4*nodeNum; %% v is constrainted
+        
+        
+        % top side, u=v=w=0
+        SideNodesNum_THS=length(SideNodesNumList_THS);
+        SideNodesNum=SideNodesNum_THS;
+        SideNodesNumList=SideNodesNumList_THS;
+        SidesDof_THS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        SidesDof_THS(1*SideNodesNum+1:SideNodesNum*2)=SideNodesNumList+3*nodeNum; %% u is constrainted
+        SidesDof_THS(2*SideNodesNum+1:SideNodesNum*3)=SideNodesNumList+4*nodeNum; %% v is constrainted
+        
+        % bottom side, u=v=w=0
+        SideNodesNum_BHS=length(SideNodesNumList_BHS);
+        SideNodesNum=SideNodesNum_BHS;
+        SideNodesNumList=SideNodesNumList_BHS;
+        SidesDof_BHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        SidesDof_BHS(1*SideNodesNum+1:SideNodesNum*2)=SideNodesNumList+3*nodeNum; %% u is constrainted
+        SidesDof_BHS(2*SideNodesNum+1:SideNodesNum*3)=SideNodesNumList+4*nodeNum; %% v is constrainted
+        
+        % ActiveDof=setdiff(1:FEM.GDof/5*3,SidesDof);
+        Constrained_Dof= unique([SidesDof_LHS SidesDof_RHS SidesDof_THS SidesDof_BHS]);
+        ActiveDof=setdiff(1:FEM.GDof,Constrained_Dof);
+        
+        
+        
     case 'SSSS-NXX'
         
         % Unaxial stress - Nxx
@@ -141,38 +182,38 @@ switch type
         ActiveDof=setdiff(1:FEM.GDof,Constrained_Dof);
         
         
-          case 'SSSS-disp-Coburn-paper'
+    case 'SSSS-disp-Coburn-paper'
         
         % Unaxial stress - Nxx
         % left side, u=v=w=0
         SideNodesNum_LHS=length(SideNodesNumList_LHS);
         SideNodesNum=SideNodesNum_LHS;
         SideNodesNumList=SideNodesNumList_LHS;
-%         SidesDof_LHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        %         SidesDof_LHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
         SidesDof_LHS(1*SideNodesNum+1:SideNodesNum*2)=SideNodesNumList+3*nodeNum; %% u is constrainted
-%         SidesDof_LHS(2*SideNodesNum+1:SideNodesNum*3)=SideNodesNumList+4*nodeNum; %% v is constrainted
+        %         SidesDof_LHS(2*SideNodesNum+1:SideNodesNum*3)=SideNodesNumList+4*nodeNum; %% v is constrainted
         
         % right side, w=0
         SideNodesNum_RHS=length(SideNodesNumList_RHS);
         SideNodesNum=SideNodesNum_RHS;
         SideNodesNumList=SideNodesNumList_RHS;
-%         SidesDof_RHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        %         SidesDof_RHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
         
         % top side, w=v=0
         SideNodesNum_THS=length(SideNodesNumList_THS);
         SideNodesNum=SideNodesNum_THS;
         SideNodesNumList=SideNodesNumList_THS;
-%         SidesDof_THS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        %         SidesDof_THS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
         SidesDof_THS(1*SideNodesNum+1:SideNodesNum*2)=SideNodesNumList+4*nodeNum; %% v is constrainted
         
         % bottom side, w=v=0
         SideNodesNum_BHS=length(SideNodesNumList_BHS);
         SideNodesNum=SideNodesNum_BHS;
-%         SideNodesNumList=SideNodesNumList_BHS;
-%         SidesDof_BHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        %         SideNodesNumList=SideNodesNumList_BHS;
+        %         SidesDof_BHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
         SidesDof_BHS(1*SideNodesNum+1:SideNodesNum*2)=SideNodesNumList+4*nodeNum; %% v is constrainted
         
-        % 
+        %
         SideNodesNumList_MID = find(xx==0.5*max(FEM.nodeCoordinates(:,1)))';
         
         SidesDof_MID =  SideNodesNumList_MID;
@@ -185,33 +226,33 @@ switch type
         
     case 'SSSS-disp-Coburn-v2'
         
-      % Unaxial stress - Nxx
+        % Unaxial stress - Nxx
         % left side, u=v=w=0
         SideNodesNum_LHS=length(SideNodesNumList_LHS);
         SideNodesNum=SideNodesNum_LHS;
         SideNodesNumList=SideNodesNumList_LHS;
-%         SidesDof_LHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        %         SidesDof_LHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
         SidesDof_LHS(1*SideNodesNum+1:SideNodesNum*2)=SideNodesNumList+3*nodeNum; %% u is constrainted
         SidesDof_LHS(2*SideNodesNum+1:SideNodesNum*3)=SideNodesNumList+4*nodeNum; %% v is constrainted
         
         % right side, w=0
-%         SideNodesNum_RHS=length(SideNodesNumList_RHS);
-%         SideNodesNum=SideNodesNum_RHS;
-%         SideNodesNumList=SideNodesNumList_RHS;
-%         SidesDof_RHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        %         SideNodesNum_RHS=length(SideNodesNumList_RHS);
+        %         SideNodesNum=SideNodesNum_RHS;
+        %         SideNodesNumList=SideNodesNumList_RHS;
+        %         SidesDof_RHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
         
         % top side, w=v=0
         SideNodesNum_THS=length(SideNodesNumList_THS);
         SideNodesNum=SideNodesNum_THS;
         SideNodesNumList=SideNodesNumList_THS;
-%         SidesDof_THS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        %         SidesDof_THS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
         SidesDof_THS(1*SideNodesNum+1:SideNodesNum*2)=SideNodesNumList+4*nodeNum; %% v is constrainted
         
         % bottom side, w=v=0
         SideNodesNum_BHS=length(SideNodesNumList_BHS);
         SideNodesNum=SideNodesNum_BHS;
         SideNodesNumList=SideNodesNumList_BHS;
-%         SidesDof_BHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
+        %         SidesDof_BHS(1:SideNodesNum)=SideNodesNumList;%% w is constrainted
         SidesDof_BHS(1*SideNodesNum+1:SideNodesNum*2)=SideNodesNumList+4*nodeNum; %% v is constrainted
         
         % ActiveDof=setdiff(1:FEM.GDof/5*3,SidesDof);
