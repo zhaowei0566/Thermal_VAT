@@ -15,4 +15,15 @@ Code applies for examples in Table 7
 2. Material properties can be modified in lines 132-141;
 3. Fiber ply orientations can be modified in line 144;
 
-Note: The current program is NOT ALLOWED to be shared with other persons till the paper gets published. Contact Wei Zhao (weizhao@vt.edu) for permission.
+Note: The current program is NOT ALLOWED to be shared with any other persons till the paper gets published. 
+
+Contact Wei Zhao (weizhao@vt.edu) for permission.
+
+
+Updates:
+1. Nov-10-2018: the previous method for thermal buckling of VAT laminated plate presented in Duran's composite structures paper is not correct. The method is updated!
+                compute thermal load
+                compute resultant stress
+                compute geometric stiffness
+                compute buckling analysis
+                v1.1 
