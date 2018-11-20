@@ -14,3 +14,9 @@ Code applies for examples in Table 7
 1. Plate geometry can be modified in lines 60-62;
 2. Material properties can be modified in lines 132-141;
 3. Fiber ply orientations can be modified in line 144;
+
+
+% ================================================== Nov 20, 2018, by Wei Zhao
+1. add subroutine folder, 'plate'
+2. add free vibration analysis solver in 'Free_vibration_VAT_laminated_plates.m'
+3. The fiber paths are defined in 'Duran_Materials.m'

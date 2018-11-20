@@ -177,7 +177,7 @@ center =[Stru.length Stru.width]/2;
 
 physical_length = Stru.length; % change along width direction
 
-[MassPlate,MelemPlate] = LinearMassLaminatedPlate(FEM,Mat,Stru);
+% [MassPlate,MelemPlate] = LinearMassLaminatedPlate(FEM,Mat,Stru);
 
 %% VAT
 %           modeshape_fig_name ='buckling_modeshape_present_GraphteEpoxy'
