@@ -1,25 +1,8 @@
-%% Curvilinearly Stiffened Laminated Plate -- Buckling Code & Statics Code
-% This code is only applicable to the blade-stiffener
-%% Code for paper for composite structures
-% - static
-% - buckling
-% - vibration
-% - PrestressModes
-% - August, 7th, 2014
-%% ===========Modification History ======================
-% - May, 5 2015 Code for SciTech 2016, Vibration code added
-% - May, 21 2015: Modify the alpha in the stiffener beam differential
-%  stiffness for axial stress in the beam
-% - May, 24 2015 : Modify alpha in stiffener geometric stiffness
-% - This program is for uniform stress distribution along the plate;
-%% ===============================================================
-% v3 - orthotropic stiffener is used. Jan-19-2018
+% The code is mainly used for conducting thermal buckling analysis of VAT
+% laminated plate by using example in Duran's paper, 
+% Change the material name in Line 104 for different material cases.
 %
-%% # TO DO LISTS
-% 1) TO add static/mechanical buckling/vibration/forced
-% vibration/prestressed vibration analysis solvers for PLATE;
-% 2) To use different parameterization methods for VAT fiber plies;
-%% !!! NOTE THE FIBER PLY ORIENTATION IS DEFINED W.R.T Y-AXIS !!!
+% Contact: Wei Zhao (weizhao@vt.edu), May, 2018
 
 clear all;warning off;format long;
 close all;
@@ -50,9 +33,6 @@ global Stiffener;
 global Laminate;
 
 global Thermal
-
-% Solver='buckling';
-
 global Plate
 
 
@@ -60,11 +40,6 @@ global Plate
 Plate.width = 0.15;
 
 Plate.length =0.15;
-
-
-
-% Stiffener.height = 60e-3;
-
 
 %% === Meshing plate =====
 
@@ -123,27 +98,16 @@ patch_plot(FEM.elementNodes,FEM.nodeCoordinates_label,200,'skin');axis image;
 Thermal.Temp_bot  = 1;
 Thermal.k1 = 0.0;
 Thermal.k2 = 0;
-
-%% ===========-Composite Material Properties ==========================
+%% ================================================================
+%% ===========-Composite Material Properties ======================
+%% ================================================================
 mat_type = 'GrEp';'CaEp';'GrEp';
 
 Duran_Materials;
 
 modeshape_fig_name ='TEST'  ;
 
-%  T01 = [54.74 54.74];
-%
-%
-%
-%  T01 = [69 -5.705];
-%
-% Mat.E1=45e9;147e9;216e9;
-% Mat.E2=11e9;10.3e9;5.0e9;
-% Mat.G12=4.5e9;7.0e9;4.5e9;
-% Mat.v12=0.29;0.27;0.25;
-% Mat.alpha1=7.1e-6;-0.9e-6;-0.0e-6;
-% Mat.alpha2=30e-6;27e-6;25e-6;
-
+%% 
 
 Mat.kappa = 5/6;
 Mat.G13=Mat.G12;
@@ -216,7 +180,6 @@ postprocessISOTROPIC;
 
 % static analysis for stress distributions
 
-%         [FEM.stress,FEM.strain]=StressRecoveryPlate_VAT_center_average_v2_X(FEM,Laminate,Mat,Stru,T0T1,center,Stru.length);
 [FEM.stress,FEM.strain]=StressRecoveryPlate_VAT_center_average_v2_constant_angle(FEM,Laminate,Mat,Stru,T0T1,center,Stru.length);
 
 
@@ -229,8 +192,6 @@ Thermal_Elastic.stress =FEM.stress - Thermal.stress;
 FEM.stress =    Thermal_Elastic.stress;
 % compute geometric stiffness due to thermal stress
 
-% (K+ \lambda KG){u} = 0
-%         KGplate =GeometryStiffnessPlate_Thermal_stress_recovery(Thermal,FEM,Stru,Laminate);
 
 KGplate =GeometryStiffnessPlate_stress_recovery(FEM,Stru,Laminate);
 
@@ -244,7 +205,7 @@ FEM.BCtype='SSSS-3'; %% Four simple supported sides
 Solver='buckling';
 [V,D]=eigs(Kplate(ActiveDof,ActiveDof),-KGplate(ActiveDof,ActiveDof),10,'sm');
 % % -----  buckling analysis of pure plate  ------
-%                                     [V,D]=eigs(Kplate(ActiveDof,ActiveDof),KGplate(ActiveDof,ActiveDof),10,'sm');
+
 [DD,modeNo]=sort((diag(D)));
 loadfactor=DD(1:10);
 VVsort=V(:,modeNo);
