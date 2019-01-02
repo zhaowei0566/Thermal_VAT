@@ -19,6 +19,9 @@ Note: The current program is NOT ALLOWED to be shared with any other persons til
 
 Contact Wei Zhao (weizhao@vt.edu) for permission.
 
+Please cite:
+Zhao, W., Singh, K. and Kapania, R. K., "Thermal Buckling Analysis and Optimization of Curvilinearly Stiffened Plates with Variable Angle Tow Laminates," AIAA Journal of Spacecraft and Rocket, 2018
+
 ===========================================================================================================================
 Updates:
 1. Nov-10-2018: the previous method for thermal buckling of VAT laminated plate presented in Duran's composite structures paper is not correct. The method is updated!
@@ -27,3 +30,4 @@ Updates:
                 compute geometric stiffness
                 compute buckling analysis
                 v1.1 
+2. Free vibration analysis added.                
