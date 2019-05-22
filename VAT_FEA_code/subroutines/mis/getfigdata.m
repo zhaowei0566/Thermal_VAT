@@ -1,4 +1,4 @@
-function [xdata,ydata]=getfigdata(figure_name)
+function [xdata,ydata]=getfigdata(fighandle)
 %getfigdata is a simple m file to get back the data from a 2D or 3D figure
 % In case of 2D figures, discard zdata
 % Example:
@@ -8,7 +8,7 @@ function [xdata,ydata]=getfigdata(figure_name)
 % [xdata,ydata,zdata]=getfigdata('test.fig');
 % hold on
 %plot(xdata,ydata,'r')
-fighandle=openfig(figure_name);
+% fighandle=openfig(figure_name);
 ax=findall(fighandle,'Type','line');
 xdata=get(ax,'Xdata');
 ydata=get(ax,'YData');
