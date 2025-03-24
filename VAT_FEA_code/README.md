@@ -8,7 +8,7 @@ Main code: \
         
 The code is mainly used for conducting thermal buckling analysis of VAT laminated plate by using example in Duran's paper [https://www.sciencedirect.com/science/article/pii/S0263822314007314](url)
 
-```$$ Change the material name in Line 104 for different material cases.```
+```Change the material name in Line 104 for different material cases.```
 
 Contact: Wei Zhao (weizhao@vt.edu), May, 2018        
 
