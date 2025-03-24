@@ -1,4 +1,4 @@
-# Thermal buckling analysis: 
+# Thermal buckling analysis of variable angle tow steered laminated composites: 
 
 Main code: \
         ```Thermal_buckling_plate_validation_Duran.m``` \
