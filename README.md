@@ -1,6 +1,6 @@
 # Thermal buckling analysis of variable angle tow steered laminated composites: 
 
-Main code: \
+Main code (VAT_FEA_code folder): \
         ```Thermal_buckling_plate_validation_Duran.m``` \
         - using Duran's model for analysis\
         - Present results in two cases are not same with Duran's results but close with NASTRAN/ABAQUS results, check the attached manuscript for details
