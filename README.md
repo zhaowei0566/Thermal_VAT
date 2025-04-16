@@ -13,7 +13,7 @@ The code is mainly used for conducting thermal buckling analysis of VAT laminate
 Contact: Wei Zhao (weizhao@vt.edu), May, 2018        
 
 
-Relevant details can be found in the following paper or pre-print [https://github.com/zhaowei0566/Thermal_VAT/blob/master/AIAA_JSR_Thermal_buckling_VAT_Curvilinear_R2_final.pdf](url)
+Relevant details can be found in the following paper or pre-print attached.
 
         @article{zhao2019thermal,
           title={Thermal buckling analysis and optimization of curvilinearly stiffened plates with variable angle tow laminates},
